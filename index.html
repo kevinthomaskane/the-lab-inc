@@ -11,9 +11,9 @@
     <div id="slide-container" class="full-width-container">
       <div id="slide-overlay"></div>
       <div id="slide-indicators">
-        <span class="indicator active" data-slide="0"></span>
-        <span class="indicator" data-slide="1"></span>
-        <span class="indicator" data-slide="2"></span>
+        <span class="indicator active"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
       </div>
     </div>
 
@@ -26,60 +26,60 @@
         const slides = [
           {
             id: 'slide-1',
-            title: 'Prosper',
+            title: 'Create',
             subtitle: 'Business workshops and events',
-            src: 'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp',
-            alt: 'the-lab-eating-area.webp',
-            width: 1080,
-            height: 810,
-            sizes: '(max-width:768px)49.125vw,32.166666666666664vw',
+            src: 'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp',
+            alt: 'Business workshops and events',
+            width: 2000,
+            height: 1333,
+            sizes: '100vw',
             srcset: `
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp?format=100w 100w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp?format=300w 300w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp?format=500w 500w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp?format=750w 750w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp?format=1000w 1000w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp?format=1500w 1500w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/c5252fa9-f4a8-465d-a036-7d3ab7cd07e0/the-lab-eating-area.webp?format=2500w 2500w
-    `,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp?format=100w 100w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp?format=300w 300w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp?format=500w 500w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp?format=750w 750w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp?format=1000w 1000w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp?format=1500w 1500w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/f73deca5-07c6-4333-8032-38d17fbcc185/the-lab-business-meeting-min.webp?format=2500w 2500w
+      `,
           },
           {
             id: 'slide-2',
-            title: 'Health',
-            subtitle: 'Exercise and yoga',
-            src: 'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp',
-            alt: 'the-lab-swingset.webp',
-            width: 1080,
-            height: 720,
-            sizes: '(max-width:768px)55.265625vw,36.1875vw',
+            title: 'Connect',
+            subtitle: 'Prayer and worship or dinner party',
+            src: 'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp',
+            alt: 'Prayer and worship or dinner party',
+            sizes: '100vw',
+            width: 2000,
+            height: 1333,
             srcset: `
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp?format=100w 100w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp?format=300w 300w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp?format=500w 500w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp?format=750w 750w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp?format=1000w 1000w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp?format=1500w 1500w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/aa6957dd-6ea2-4e09-81ce-a5fe48b43308/the-lab-swingset.webp?format=2500w 2500w
-    `,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp?format=100w 100w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp?format=300w 300w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp?format=500w 500w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp?format=750w 750w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp?format=1000w 1000w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp?format=1500w 1500w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/3348f011-b9ab-462d-aa3e-6a991ed7b0e6/the-lab-connect-min.webp?format=2500w 2500w
+      `,
           },
           {
             id: 'slide-3',
-            title: 'Soul Prosper',
-            subtitle: 'Prayer and worship or dinner party',
-            src: 'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp',
-            alt: 'the-lab-umbrella.webp',
-            width: 1080,
-            height: 720,
-            sizes: '(max-width:768px)55.265625vw,36.1875vw',
+            title: 'Grow',
+            subtitle: 'Exercise and yoga',
+            src: 'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp',
+            alt: 'Exercise and yoga',
+            width: 2000,
+            height: 1335,
+            sizes: '100vw',
             srcset: `
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp?format=100w 100w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp?format=300w 300w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp?format=500w 500w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp?format=750w 750w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp?format=1000w 1000w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp?format=1500w 1500w,
-      https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/da149e0b-57e9-41c1-a6e9-02ffc73b3ffb/the-lab-umbrella.webp?format=2500w 2500w
-    `,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp?format=100w 100w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp?format=300w 300w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp?format=500w 500w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp?format=750w 750w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp?format=1000w 1000w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp?format=1500w 1500w,
+        https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/d7545236-05ea-469f-8543-b2b06b1d1959/the-lab-exercise-min.webp?format=2500w 2500w
+      `,
           },
         ];
 
@@ -91,25 +91,24 @@
           i !== currentSlideIndex && div.classList.add('hide');
 
           div.innerHTML = `
-      <div class="slide-content-wrapper">
-        <img 
-          src="${slide.src}" 
-          alt="${slide.alt}" 
-          width="${slide.width}" 
-          height="${slide.height}" 
-          sizes="${slide.sizes}" 
-          class="slide-image"
-          style="display:block;object-position:50% 50%;object-fit:cover;width:100%;height:100%;" 
-          srcset="${slide.srcset}"
-          loading="lazy" 
-          decoding="async"
-        />
-        <div class="slide-content">
-          <h2 class="slide-title">${slide.title}</h2>
-          <p class="slide-subtitle">${slide.subtitle}</p>
+        <div class="slide-content-wrapper">
+          <img
+            src="${slide.src}"
+            alt="${slide.alt}"
+            width="${slide.width}"
+            height="${slide.height}"
+            sizes="${slide.sizes}"
+            class="slide-image"
+            srcset="${slide.srcset}"
+            loading="${i > 0 ? 'lazy' : 'eager'}"
+            decoding="async"
+          />
+          <div class="slide-content">
+            <h2 class="slide-title">${slide.title}</h2>
+            <p class="slide-subtitle">${slide.subtitle}</p>
+          </div>
         </div>
-      </div>
-    `;
+      `;
 
           container.appendChild(div);
         });
@@ -167,14 +166,20 @@
 
       .full-width-container {
         position: relative;
-        height: 500px;
+        height: 800px;
         width: 100vw;
         overflow: hidden;
       }
 
       @media (max-width: 768px) {
         .full-width-container {
-          height: 300px;
+          width: 101vw;
+          height: 400px;
+          margin-left: -1vw;
+        }
+
+        .fe-68c1f559b9374577cc262c6f {
+          max-height: 450px;
         }
       }
 
@@ -212,9 +217,14 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
         position: absolute;
         top: 0;
         left: 0;
+      }
+
+      .slide:last-child .slide-image {
+        object-position: top;
       }
 
       .slide-content {
@@ -242,9 +252,17 @@
       }
 
       .slide-title {
-        font-size: 5rem;
+        font-family: 'Helvetica Nue', sans-serif !important;
         margin: 1rem 0;
         color: inherit;
+        font-size: 5rem;
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        .slide-title {
+          font-size: 2.5rem;
+        }
       }
 
       .slide-subtitle {
@@ -272,14 +290,14 @@
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        border: 2px solid rgba(0, 0, 0, 0.5);
+        border: 2px solid black;
         cursor: pointer;
         background-color: rgba(255, 255, 255, 0.2);
         transition: background-color 0.3s ease;
       }
 
       .indicator.active {
-        background-color: black;
+        background-color: #e0ccbe;
       }
 
       .hide {
