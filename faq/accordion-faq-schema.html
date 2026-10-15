@@ -1,0 +1,43 @@
+<!-- LAB FAQ SCHEMA: paste into the FAQ page's Footer Code Injection
+     (Page Settings > Advanced > Page Header/Footer Code Injection > Footer).
+     Builds FAQPage JSON-LD from the native Accordion blocks on the page, so
+     the client can edit questions in the Squarespace editor and the schema
+     follows automatically. No manual regeneration needed. -->
+<script>
+  (() => {
+    const build = () => {
+      const items = document.querySelectorAll('.sqs-block-accordion .accordion-item');
+      const text = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : '');
+      const mainEntity = [];
+      items.forEach((item) => {
+        const q = text(item.querySelector('.accordion-item__title'));
+        const a = text(
+          item.querySelector('.accordion-item__description') ||
+            item.querySelector('.accordion-item__dropdown')
+        );
+        if (q && a) {
+          mainEntity.push({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: { '@type': 'Answer', text: a },
+          });
+        }
+      });
+      if (!mainEntity.length) return;
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'lab-faq-schema';
+      script.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity,
+      });
+      document.head.appendChild(script);
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', build);
+    } else {
+      build();
+    }
+  })();
+</script>

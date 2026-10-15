@@ -1,103 +1,57 @@
+// Regenerates everything under schemas/ and faq/ from constants/.
+//   node generateSchema.js
+//
+// Outputs
+//   schemas/common-schemas.html   WebSite + LocalBusiness/NGO  -> site-wide Header Code Injection
+//   schemas/service-schemas.html  one Service per offering     -> site-wide Header Code Injection
+//   schemas/faq-schema.html       FAQPage                      -> Header Code Injection of the page that shows the FAQ
+//   faq/faq-block.html            visible FAQ accordion        -> Code Block on that same page
+//   faq/index.html                local demo of the block
+//   faq/paste-sheet.md            FAQ text for populating native Accordion blocks
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { SERVICES } from './constants/services.js';
-import { FAQ } from './constants/faq.js';
+import { FAQ, FAQ_CATEGORIES } from './constants/faq.js';
 import {
-  localBusinessSchema,
   websiteSchema,
+  getLocalBusinessSchema,
   getServiceSchema,
   getFAQPageSchema,
 } from './schemas.js';
+import { renderFaqBlock, renderFaqDemo } from './faq/render.js';
+import { renderPasteSheet } from './faq/paste-sheet.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const schemasDir = path.resolve(__dirname, 'schemas');
+const faqDir = path.resolve(__dirname, 'faq');
 
-async function generateSchemas() {
-  const outputDir = path.resolve(__dirname, 'schemas');
+const ldJson = (data) =>
+  `<script type="application/ld+json">\n${JSON.stringify(data, null, 2)}\n</script>`;
 
-  const data = [
-    generateCommonSchemas(outputDir),
-    generateServiceSchemas(outputDir),
-  ];
+const graph = (nodes) =>
+  ldJson({ '@context': 'https://schema.org', '@graph': nodes });
 
-  data.forEach(({ graph, file }) => {
-    const fileContent = `
-      <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@graph": [${graph}]
-        }
-      </script>`;
-    fs.writeFileSync(file, fileContent.trim());
-    console.log(`Schema written to ${file}`);
-  });
-
-  const faq = getFAQPageSchema(FAQ);
-  const file = path.resolve(outputDir, 'faq-schema.html');
-  const fileContent = `
-      <script type="application/ld+json">
-          ${JSON.stringify(faq, null, 2)}
-      </script>`;
-  fs.writeFileSync(file, fileContent.trim());
-  console.log(`Schema written to ${file}`);
+function write(file, content) {
+  fs.writeFileSync(file, content.trimEnd() + '\n');
+  console.log(`Written: ${path.relative(__dirname, file)}`);
 }
 
-function generateCommonSchemas(outputDir) {
-  const file = path.resolve(outputDir, 'common-schemas.html');
-  const graph = [
-    JSON.stringify(websiteSchema, null, 2),
-    JSON.stringify(localBusinessSchema, null, 2),
-  ];
-  return { graph, file };
-}
+// Schemas
+write(
+  path.join(schemasDir, 'common-schemas.html'),
+  graph([websiteSchema, getLocalBusinessSchema(SERVICES)])
+);
+write(
+  path.join(schemasDir, 'service-schemas.html'),
+  graph(SERVICES.map(getServiceSchema))
+);
+const faqSchema = ldJson(getFAQPageSchema(FAQ));
+write(path.join(schemasDir, 'faq-schema.html'), faqSchema);
 
-function generateServiceSchemas(outputDir) {
-  const file = path.resolve(outputDir, 'service-schemas.html');
-  const graph = SERVICES.map(({ name, description, url }) =>
-    JSON.stringify(getServiceSchema(name, description, url), null, 2)
-  );
-  return { graph, file };
-}
-
-generateSchemas();
-
-// const tasks = {
-//   organizationSchema: () => generateStaticSchema('organizationSchema'),
-//   websiteSchema: () => generateStaticSchema('websiteSchema'),
-//   localBusinessSchema: () => generateStaticSchema('localBusinessSchema'),
-//   getServiceSchema: 'getServiceSchema',
-//   getFAQPageSchema: 'getFAQPageSchema',
-//   listSchemas: () => {
-//     import('./schemas.js').then((schemas) => {
-//       console.log('Available schemas:', Object.keys(schemas));
-//     });
-//   },
-// };
-//
-// if (!task) {
-//   console.error('Please provide a task name.\nAvailable tasks:');
-//   (async () => {
-//     const schemas = await import('./schemas.js');
-//     console.log(Object.keys(schemas));
-//     process.exit(1);
-//   })();
-// } else {
-//   //execute the task
-//   tasks[task]();
-// }
-//
-// async function generateStaticSchema(name) {
-//   const schemas = await import('./schemas.js');
-//   try {
-//     const schema = schemas[name];
-//     fs.writeFileSync(
-//       path.resolve(__dirname, `schemas/${name}.html`),
-//       `<script type="application/ld+json">
-//         ${JSON.stringify(schema, null, 2)}
-//        </script>`
-//     );
-//   } catch (error) {
-//     console.error('Error generating schema:', error);
-//   }
-// }
+// FAQ block + demo
+const block = renderFaqBlock(FAQ, FAQ_CATEGORIES);
+write(path.join(faqDir, 'faq-block.html'), block);
+write(path.join(faqDir, 'index.html'), renderFaqDemo(block, faqSchema));
+write(path.join(faqDir, 'paste-sheet.md'), renderPasteSheet(FAQ, FAQ_CATEGORIES));

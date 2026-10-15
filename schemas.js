@@ -1,58 +1,112 @@
-const SITE_DESCRIPTION =
-  'The LAB Inc. is a nonprofit business incubator and event hub where faith and business intentionally collide. We are dedicated to empowering entrepreneurs, businesses (small and large), and community members through collaboration, innovation, and wellness.';
+const SITE = 'https://www.thelabinc.org';
+const ORG_ID = `${SITE}/#organization`;
+const LOGO =
+  'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/7b5e28d0-ceb3-4452-9ada-9f5c7621c0fb/the-lab-logo-resized.webp';
 
-// Website Schema
+const SITE_DESCRIPTION =
+  'The LAB is a non-profit growth hub and event space in Gardena, CA where faith and business intentionally meet. Entrepreneurs, business professionals, and community members come here to build businesses, develop themselves, connect with others, and create what matters.';
+
+const GEO = {
+  '@type': 'GeoCoordinates',
+  latitude: 33.8837,
+  longitude: -118.309,
+};
+
+export const AREA_SERVED = {
+  '@type': 'GeoCircle',
+  geoMidpoint: GEO,
+  geoRadius: '80467', // meters (~50 miles)
+};
+
 export const websiteSchema = {
   '@type': 'WebSite',
+  '@id': `${SITE}/#website`,
   name: 'The LAB Inc.',
-  url: 'https://www.thelabinc.org',
+  url: SITE,
   description: SITE_DESCRIPTION,
-  publisher: {
-    '@id': 'https://www.thelabinc.org#organization',
-  },
+  publisher: { '@id': ORG_ID },
 };
 
-export const localBusinessSchema = {
-  '@type': 'LocalBusiness',
-  '@id': 'https://www.thelabinc.org#organization',
-  name: 'The LAB Inc.',
-  url: 'https://www.thelabinc.org',
-  logo: 'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/7b5e28d0-ceb3-4452-9ada-9f5c7621c0fb/the-lab-logo-resized.webp',
-  description: SITE_DESCRIPTION,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Gardena',
-    addressRegion: 'CA',
-    addressCountry: 'US',
-    postalCode: '90249',
-    streetAddress: '15916 Crenshaw Blvd',
-  },
-  telephone: '+1-310-323-7626',
-  openingHours: ['Mo-Su 09:00-17:00'],
-  serviceArea: {
-    '@type': 'GeoCircle',
-    geoMidpoint: {
-      '@type': 'GeoCoordinates',
-      latitude: 33.8837,
-      longitude: -118.309,
-    },
-    geoRadius: '50',
-  },
-};
-
-export function getServiceSchema(name, description, url) {
+// Mirrors the block currently injected site-wide on thelabinc.org, plus
+// contact/social fields and the offer catalog that links to the Services.
+export function getLocalBusinessSchema(services = []) {
   return {
-    '@type': 'Service',
-    name,
-    description,
-    url,
-    provider: {
-      '@id': 'https://www.thelabinc.org#organization',
+    '@type': ['LocalBusiness', 'NGO'],
+    '@id': ORG_ID,
+    name: 'The LAB Inc.',
+    alternateName: 'The LAB',
+    url: SITE,
+    logo: { '@type': 'ImageObject', url: LOGO },
+    image: LOGO,
+    description: SITE_DESCRIPTION,
+    email: 'hello@thelabinc.org',
+    telephone: '+1-310-323-7626',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '15916 Crenshaw Blvd',
+      addressLocality: 'Gardena',
+      addressRegion: 'CA',
+      postalCode: '90249',
+      addressCountry: 'US',
+    },
+    geo: GEO,
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ],
+        opens: '09:00',
+        closes: '17:00',
+      },
+    ],
+    areaServed: AREA_SERVED,
+    sameAs: [
+      'https://www.instagram.com/the.labinc',
+      'https://www.linkedin.com/company/the-lab-incubator/',
+    ],
+    knowsAbout: [
+      'Faith and business',
+      'Entrepreneurship',
+      'Corporate events',
+      'Team offsite meetings',
+      'Conference room rentals',
+      'Basketball court rentals',
+      'Health and wellness',
+      'Creative media production',
+      'Networking events',
+      'Workshops',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'The LAB offerings',
+      itemListElement: services.map(({ slug }) => ({
+        '@type': 'Offer',
+        itemOffered: { '@id': `${SITE}/#service-${slug}` },
+      })),
     },
   };
 }
 
-// FAQPage Schema generator
+export function getServiceSchema({ slug, name, serviceType, description, url }) {
+  return {
+    '@type': 'Service',
+    '@id': `${SITE}/#service-${slug}`,
+    name,
+    serviceType,
+    description,
+    url,
+    provider: { '@id': ORG_ID },
+    areaServed: AREA_SERVED,
+  };
+}
+
 export function getFAQPageSchema(questions) {
   return {
     '@context': 'https://schema.org',
@@ -60,10 +114,7 @@ export function getFAQPageSchema(questions) {
     mainEntity: questions.map((q) => ({
       '@type': 'Question',
       name: q.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: q.answer,
-      },
+      acceptedAnswer: { '@type': 'Answer', text: q.answer },
     })),
   };
 }

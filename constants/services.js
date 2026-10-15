@@ -1,32 +1,95 @@
+// Offerings promoted in search. Each entry becomes a schema.org Service.
+// `slug` becomes the Service @id; `url` must be a live page.
+
+const SITE = 'https://www.thelabinc.org';
+
 export const SERVICES = [
   {
-    name: 'Lab Talks',
+    slug: 'event-space-rental',
+    name: 'Event Space Rental',
+    serviceType: 'Event venue rental',
     description:
-      'Our podcast studio connects faith and the marketplace. We host and produce conversations with faith-filled entrepreneurs and leaders who are making a difference for Christ, offering insights and stories that inspire purpose-driven impact.',
-    url: 'https://www.thelabinc.org/inside-the-lab#lab-talks',
+      'Flexible event space in Gardena, CA for corporate events, networking events, meetups, workshops, private celebrations, and faith-based gatherings, with indoor and outdoor areas and event support from our team.',
+    url: `${SITE}/ourspace`,
   },
   {
-    name: 'Meetups',
+    slug: 'corporate-events-team-offsites',
+    name: 'Corporate Events & Team Offsites',
+    serviceType: 'Corporate event venue',
     description:
-      'We host meetups that bring people together to share ideas, network, and build community. From entrepreneur roundtables and creative gatherings to wellness circles and book clubs, each meetup creates space for meaningful connections and collaboration.',
-    url: 'https://www.thelabinc.org/inside-the-lab#meetups',
+      'Host team offsite meetings, leadership retreats, trainings, and company gatherings at The LAB. Combine the main hall, conference room, and gym for a full day of meetings, breakouts, and team activities in one South Bay location.',
+    url: `${SITE}/ourspace`,
   },
   {
-    name: 'Workshops & Events',
+    slug: 'conference-room-rental',
+    name: 'Conference Room & Meeting Space Rental',
+    serviceType: 'Meeting room rental',
     description:
-      'Our workshops and events inspire learning and growth. From expert-led sessions in business, wellness, and the arts to panels and speaker series, each experience offers practical insights, fresh ideas, and lasting community.',
-    url: 'https://www.thelabinc.org/inside-the-lab#workshops-events',
+      'Conference room and meeting space for board meetings, client presentations, interviews, and planning sessions, available by the hour near Los Angeles and LAX.',
+    url: `${SITE}/ourspace`,
   },
   {
-    name: 'Gym',
+    slug: 'basketball-court-gym-rental',
+    name: 'Basketball Court & Gym Rental',
+    serviceType: 'Gymnasium rental',
     description:
-      'Our gymnasium is a hub for youth and adult development through sports and movement. From basketball and volleyball to fitness training and skill-building programs, the space is designed to encourage teamwork, confidence, and healthy growth for all ages.',
-    url: 'https://www.thelabinc.org/inside-the-lab#gym',
+      'Full-size indoor basketball court and gymnasium in Gardena, CA available for team practices, pickup runs, leagues, clinics, camps, tournaments, and large events, with openings throughout the week.',
+    url: `${SITE}/ourspace`,
   },
   {
-    name: 'Health & Wellness',
+    slug: 'creative-media-space',
+    name: 'Creative Media Space',
+    serviceType: 'Studio rental',
     description:
-      'Our community programming makes space for connection and fun. From fitness classes and wellness activities to social gathering and dinners, these experiences bring people together in ways that strengthen both individuals and the community as a whole.',
-    url: 'https://www.thelabinc.org/inside-the-lab#health-wellness',
+      'Podcast and content studio plus photo and video locations for podcast recording, interviews, photoshoots, still photography, and branded content.',
+    url: `${SITE}/ourspace`,
+  },
+  {
+    slug: 'brand-creative-activations',
+    name: 'Brand & Creative Activations',
+    serviceType: 'Brand activation venue',
+    description:
+      'Space and support for brand activations, product launches, creative activations, and pop-up experiences across the main hall, indoor court, and outdoor gathering area.',
+    url: `${SITE}/ourspace`,
+  },
+  {
+    slug: 'fitness-movement-wellness',
+    name: 'Fitness, Movement & Wellness',
+    serviceType: 'Health and wellness programs',
+    description:
+      'Mat Pilates, stretching, movement, and training sessions in our wellness studio, plus health and wellness pop-up events hosted in partnership with practitioners, trainers, and wellness brands.',
+    url: `${SITE}/ourspace`,
+  },
+  {
+    slug: 'entrepreneurship-professional-growth',
+    name: 'Entrepreneurship & Professional Growth',
+    serviceType: 'Business development programs',
+    description:
+      'Workshops, meetups, networking events, mentorship, and leadership development for entrepreneurs and business professionals focused on personal and professional growth.',
+    url: `${SITE}/`,
+  },
+  {
+    slug: 'small-business-cohort',
+    name: 'Small Business Cohort',
+    serviceType: 'Business accelerator program',
+    description:
+      'A twelve-week, in-person cohort in the South Bay for business owners with paying customers who are ready to find what is capping their growth and build systems to break through it.',
+    url: `${SITE}/cohort`,
+  },
+  {
+    slug: 'faith-and-business',
+    name: 'Faith & Business Community',
+    serviceType: 'Faith-based business community',
+    description:
+      'A community where faith and business intentionally meet, including LAB Talks, our podcast with faith-driven entrepreneurs and leaders, and gatherings for purpose-driven professionals. Open to everyone.',
+    url: `${SITE}/`,
+  },
+  {
+    slug: 'event-collaboration',
+    name: 'Event Collaboration & Partnerships',
+    serviceType: 'Event partnership',
+    description:
+      'Co-hosted workshops, networking events, wellness experiences, and community gatherings with organizers, brands, and practitioners whose work fits our mission.',
+    url: `${SITE}/contact`,
   },
 ];

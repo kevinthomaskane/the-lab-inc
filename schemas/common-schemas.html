@@ -1,44 +1,161 @@
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "name": "The LAB Inc.",
-        "url": "https://www.thelabinc.org",
-        "description": "The LAB Inc. is a nonprofit business incubator and event hub where faith and business intentionally collide. We are dedicated to empowering entrepreneurs, businesses (small and large), and community members through collaboration, innovation, and wellness.",
-        "publisher": {
-          "@id": "https://www.thelabinc.org#organization"
-        }
-      },
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://www.thelabinc.org#organization",
-        "name": "The LAB Inc.",
-        "url": "https://www.thelabinc.org",
-        "logo": "https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/7b5e28d0-ceb3-4452-9ada-9f5c7621c0fb/the-lab-logo-resized.webp",
-        "description": "The LAB Inc. is a nonprofit business incubator and event hub where faith and business intentionally collide. We are dedicated to empowering entrepreneurs, businesses (small and large), and community members through collaboration, innovation, and wellness.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Gardena",
-          "addressRegion": "CA",
-          "addressCountry": "US",
-          "postalCode": "90249",
-          "streetAddress": "15916 Crenshaw Blvd"
-        },
-        "telephone": "+1-310-323-7626",
-        "openingHours": ["Mo-Su 09:00-17:00"],
-        "serviceArea": {
-          "@type": "GeoCircle",
-          "geoMidpoint": {
-            "@type": "GeoCoordinates",
-            "latitude": 33.8837,
-            "longitude": -118.309
-          },
-          "geoRadius": "50"
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.thelabinc.org/#website",
+      "name": "The LAB Inc.",
+      "url": "https://www.thelabinc.org",
+      "description": "The LAB is a non-profit growth hub and event space in Gardena, CA where faith and business intentionally meet. Entrepreneurs, business professionals, and community members come here to build businesses, develop themselves, connect with others, and create what matters.",
+      "publisher": {
+        "@id": "https://www.thelabinc.org/#organization"
       }
-    ]
-  }
+    },
+    {
+      "@type": [
+        "LocalBusiness",
+        "NGO"
+      ],
+      "@id": "https://www.thelabinc.org/#organization",
+      "name": "The LAB Inc.",
+      "alternateName": "The LAB",
+      "url": "https://www.thelabinc.org",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/7b5e28d0-ceb3-4452-9ada-9f5c7621c0fb/the-lab-logo-resized.webp"
+      },
+      "image": "https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a/7b5e28d0-ceb3-4452-9ada-9f5c7621c0fb/the-lab-logo-resized.webp",
+      "description": "The LAB is a non-profit growth hub and event space in Gardena, CA where faith and business intentionally meet. Entrepreneurs, business professionals, and community members come here to build businesses, develop themselves, connect with others, and create what matters.",
+      "email": "hello@thelabinc.org",
+      "telephone": "+1-310-323-7626",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "15916 Crenshaw Blvd",
+        "addressLocality": "Gardena",
+        "addressRegion": "CA",
+        "postalCode": "90249",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 33.8837,
+        "longitude": -118.309
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.8837,
+          "longitude": -118.309
+        },
+        "geoRadius": "80467"
+      },
+      "sameAs": [
+        "https://www.instagram.com/the.labinc",
+        "https://www.linkedin.com/company/the-lab-incubator/"
+      ],
+      "knowsAbout": [
+        "Faith and business",
+        "Entrepreneurship",
+        "Corporate events",
+        "Team offsite meetings",
+        "Conference room rentals",
+        "Basketball court rentals",
+        "Health and wellness",
+        "Creative media production",
+        "Networking events",
+        "Workshops"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "The LAB offerings",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-event-space-rental"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-corporate-events-team-offsites"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-conference-room-rental"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-basketball-court-gym-rental"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-creative-media-space"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-brand-creative-activations"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-fitness-movement-wellness"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-entrepreneurship-professional-growth"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-small-business-cohort"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-faith-and-business"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.thelabinc.org/#service-event-collaboration"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
 </script>
-
