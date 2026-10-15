@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Space — Grid Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* DEMO ONLY — mirrors the variables Squarespace defines from Site Styles,
+         so the component reads them the same way here as on the live site */
+      :root {
+        --white-hsl: 0, 0%, 100%;
+        --black-hsl: 0, 0%, 0%;
+        --accent-hsl: 24, 36.84%, 81.37%;
+        --lightAccent-hsl: 40, 8.11%, 92.75%;
+        --darkAccent-hsl: 50, 8.33%, 42.35%;
+        --heading-font-font-family: 'Libre Caslon Display';
+        --body-font-font-family: 'Nothing You Could Do';
+        --meta-font-font-family: 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      /* DEMO ONLY — page shell standing in for native Squarespace blocks */
+      body {
+        margin: 0;
+        padding-top: 3rem;
+        background: hsl(var(--accent-hsl));
+        color: hsl(var(--black-hsl));
+        font-family: var(--meta-font-font-family);
+      }
+      .demo-cta {
+        text-align: center;
+        padding: 3rem 1rem 2rem;
+      }
+      .demo-eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        margin: 0 0 1rem;
+      }
+      .demo-headline {
+        font-family: var(--heading-font-font-family);
+        font-weight: 400;
+        font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0;
+      }
+      .demo-rule {
+        width: 96px;
+        height: 2px;
+        background: hsl(var(--darkAccent-hsl));
+        margin: 1.25rem auto 0;
+      }
+      .demo-cta .demo-headline {
+        font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+        line-height: 1.15;
+        max-width: 38rem;
+        margin: 0 auto;
+      }
+      .demo-cta p {
+        font-family: var(--body-font-font-family);
+        font-size: 1.15rem;
+        margin: 0.75rem 0 0;
+      }
+      .demo-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+      .demo-buttons span {
+        font-family: var(--meta-font-font-family);
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        padding: 0.9rem 2.25rem;
+        border: 1px solid hsl(var(--black-hsl));
+      }
+      .demo-buttons span:first-child {
+        background: hsl(var(--black-hsl));
+        color: hsl(var(--white-hsl));
+      }
+    </style>
+  </head>
+  <body>
+    <!-- LAB SPACES: start (paste everything through "LAB SPACES: end" into a Code Block) -->
+    <div class="lab-spaces" id="lab-spaces">
+      <header class="lab-spaces__intro">
+        <p class="lab-spaces__eyebrow">Our Space</p>
+        <h1 class="lab-spaces__title">More than a space.</h1>
+        <p class="lab-spaces__script">Build, Develop, Connect, and Gather.</p>
+        <span class="lab-spaces__rule" aria-hidden="true"></span>
+      </header>
+      <div class="lab-spaces__filters" role="group" aria-label="Filter spaces"></div>
+      <div class="lab-spaces__grid"></div>
+    </div>
+
+    <style>
+      /* Colors and fonts come from Squarespace Site Styles; fallbacks match
+         the site's current values in case a variable is missing. */
+      .lab-spaces {
+        --lab-ink: hsl(var(--black-hsl, 0, 0%, 0%));
+        --lab-paper: hsl(var(--white-hsl, 0, 0%, 100%));
+        --lab-muted: hsl(var(--darkAccent-hsl, 50, 8.33%, 42.35%));
+        --lab-serif: var(--heading-font-font-family, 'Libre Caslon Display'), Georgia, serif;
+        --lab-sans: var(--meta-font-font-family, 'Helvetica Neue', Arial, sans-serif);
+        --lab-script: var(--body-font-font-family, 'Nothing You Could Do'), cursive;
+        --lab-gap: 5px;
+        --lab-row-max: 460px;
+        width: 100%;
+      }
+
+      .lab-spaces *,
+      .lab-spaces *::before,
+      .lab-spaces *::after {
+        box-sizing: border-box;
+      }
+
+      /* Heading: two-class selectors so Squarespace's global h1/p styles
+         don't override these */
+      .lab-spaces .lab-spaces__intro {
+        text-align: center;
+        padding: 0 1rem 2.25rem;
+        color: var(--lab-ink);
+      }
+
+      .lab-spaces .lab-spaces__eyebrow {
+        font-family: var(--lab-sans);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        line-height: 1.4;
+        text-transform: uppercase;
+        margin: 0 0 1rem;
+      }
+
+      .lab-spaces .lab-spaces__title {
+        font-family: var(--lab-serif);
+        font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        text-transform: none;
+        color: inherit;
+        margin: 0;
+      }
+
+      .lab-spaces .lab-spaces__script {
+        font-family: var(--lab-script);
+        font-size: clamp(1.25rem, 1rem + 1.25vw, 2rem);
+        line-height: 1.3;
+        margin: 0.75rem 0 0;
+      }
+
+      .lab-spaces .lab-spaces__rule {
+        display: block;
+        width: 96px;
+        height: 2px;
+        background: var(--lab-muted);
+        margin: 1.25rem auto 0;
+      }
+
+      /* Filters */
+      .lab-spaces__filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem clamp(0.5rem, 3vw, 3rem);
+        padding: 0 1rem 1.75rem;
+      }
+
+      .lab-spaces__filter {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--lab-ink);
+        cursor: pointer;
+        font-family: var(--lab-sans);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        padding: 0.7rem 1.4rem 0.7rem calc(1.4rem + 0.28em);
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .lab-spaces__filter:hover {
+        color: var(--lab-muted);
+      }
+
+      .lab-spaces__filter[aria-pressed='true'] {
+        background: var(--lab-ink);
+        color: var(--lab-paper);
+      }
+
+      .lab-spaces__filter:focus-visible {
+        outline: 2px solid var(--lab-ink);
+        outline-offset: 3px;
+      }
+
+      /* Grid: one justified row per category */
+      .lab-spaces__grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--lab-gap);
+      }
+
+      .lab-spaces__row {
+        container-type: inline-size;
+        display: flex;
+        gap: var(--lab-gap);
+        animation: lab-spaces-fade 0.35s ease both;
+      }
+
+      .lab-spaces__row[hidden] {
+        display: none;
+      }
+
+      /* Tile height = row width minus gaps, divided by the sum of aspect ratios,
+         so every tile in a row shares one height and keeps its proportions.
+         Capped by --lab-row-max; beyond that, images crop. */
+      .lab-spaces__tile {
+        position: relative;
+        flex: var(--ar) 1 0;
+        min-width: 0;
+        height: min(
+          var(--lab-row-max),
+          calc((100cqw - var(--gaps)) / var(--sum))
+        );
+        overflow: hidden;
+        margin: 0;
+        background: #2a2a2a;
+      }
+
+      .lab-spaces__tile img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: var(--pos, center);
+      }
+
+      .lab-spaces__tile::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.72) 0%,
+          rgba(0, 0, 0, 0.35) 30%,
+          rgba(0, 0, 0, 0) 60%
+        );
+        pointer-events: none;
+      }
+
+      .lab-spaces__caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        padding: 0 clamp(1rem, 2vw, 1.75rem) clamp(1rem, 2vw, 1.5rem);
+        color: #fff;
+      }
+
+      .lab-spaces__category {
+        display: block;
+        font-family: var(--lab-serif);
+        font-size: clamp(1.4rem, 1rem + 1vw, 2rem);
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        text-transform: uppercase;
+        margin: 0 0 0.6rem;
+      }
+
+      .lab-spaces__subtitle {
+        display: block;
+        font-family: var(--lab-sans);
+        font-size: clamp(0.62rem, 0.55rem + 0.2vw, 0.75rem);
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      @keyframes lab-spaces-fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Tablet: same justified rows, shorter */
+      @media (max-width: 1024px) {
+        .lab-spaces {
+          --lab-row-max: 340px;
+        }
+      }
+
+      /* Phone: single column, consistent 3:2 crop */
+      @media (max-width: 639px) {
+        .lab-spaces__filters {
+          gap: 0.25rem 0.25rem;
+          padding-bottom: 1.25rem;
+        }
+
+        .lab-spaces__filter {
+          font-size: 0.66rem;
+          letter-spacing: 0.2em;
+          padding: 0.6rem 0.9rem 0.6rem calc(0.9rem + 0.2em);
+        }
+
+        .lab-spaces__row {
+          flex-direction: column;
+        }
+
+        .lab-spaces__tile {
+          flex: none;
+          width: 100%;
+          height: auto;
+          aspect-ratio: 3 / 2;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .lab-spaces__row {
+          animation: none;
+        }
+      }
+    </style>
+
+    <script>
+      (() => {
+        const root = document.getElementById('lab-spaces');
+        if (!root) return;
+
+        const CDN =
+          'https://images.squarespace-cdn.com/content/v1/688285c2e2a26d5f75c0134a';
+        const WIDTHS = [500, 750, 1000, 1500, 2500];
+
+        const CATEGORIES = [
+          { key: 'build', label: 'Build' },
+          { key: 'develop', label: 'Develop' },
+          { key: 'connect', label: 'Connect' },
+          { key: 'gather', label: 'Gather' },
+        ];
+
+        // ratio (optional): override the image's natural aspect ratio to
+        // widen/narrow a tile; the image crops to fit.
+        // pos (optional): object-position focal point, e.g. '30% 50%'.
+        const TILES = [
+          {
+            category: 'build',
+            subtitle: 'Workshops & Education',
+            id: 'f2d04568-b036-4be1-8a85-ed7bba1eb4aa',
+            file: 'TheLabxGrind-2026AllStarWeekend-0077.jpg',
+            width: 4752,
+            height: 3168,
+            ratio: 1.9,
+            pos: 'center 40%',
+            alt: 'A presenter leading a workshop in front of a large screen',
+          },
+          {
+            category: 'build',
+            subtitle: 'Coworking & Meetings',
+            id: '8de9a184-8a39-4b3b-a9e2-5d98d08c453c',
+            file: '40-DSC00098.jpg',
+            width: 6000,
+            height: 4000,
+            ratio: 1,
+            alt: 'Coworking tables and chairs in the main hall',
+          },
+          {
+            category: 'build',
+            subtitle: 'Conference Room',
+            id: 'd5d6d87f-b7e8-435a-8409-cb0a787f36bc',
+            file: '5-DSC00044.jpg',
+            width: 6000,
+            height: 4000,
+            ratio: 1.15,
+            pos: '45% center',
+            alt: 'Conference room with a long table beneath a "A new space to break old rules" wall',
+          },
+          {
+            category: 'develop',
+            subtitle: 'Pilates, Stretch & Wellness',
+            id: 'fd578514-2212-4bac-ad2b-0976b947689e',
+            file: '35-DSC00152.jpg',
+            width: 4000,
+            height: 6000,
+            ratio: 0.9,
+            pos: 'center 80%',
+            alt: 'Wellness lounge with a "Relax and unwind" chalkboard sign',
+          },
+          {
+            category: 'develop',
+            subtitle: 'Basketball & Gym Rentals',
+            id: '14830046-994b-41b7-8ae4-900c604ab456',
+            file: 'TheLabxGrind-2026AllStarWeekend-0029.jpg',
+            width: 6000,
+            height: 4000,
+            ratio: 1.65,
+            alt: 'Players shooting on the indoor basketball court',
+          },
+          {
+            category: 'develop',
+            subtitle: 'Vitruvian Training',
+            id: '71295431-e184-44bd-ada5-bca62f4fc726',
+            file: '43-DSC00163.jpg',
+            width: 6000,
+            height: 4000,
+            ratio: 1.2,
+            alt: 'Training studio with blue flooring and red framed doorways',
+          },
+          {
+            category: 'connect',
+            subtitle: 'Podcast & Content',
+            id: '76a9b4a0-b053-486d-8471-e6259cf02a1f',
+            file: 'the-lab-talks.jpg',
+            width: 1583,
+            height: 896,
+            alt: 'A camera recording a two-person interview',
+          },
+          {
+            category: 'connect',
+            subtitle: 'Panels & Conversations',
+            id: 'e1b71b20-071f-462b-a500-2419125aaa3c',
+            file: 'TheLabxGrind-2026AllStarWeekend-0071.jpg',
+            width: 6240,
+            height: 4160,
+            ratio: 1.3,
+            alt: 'An audience watching a speaker on a large screen in the lounge',
+          },
+          {
+            category: 'connect',
+            subtitle: 'Networking & Happy Hours',
+            id: '16a47d72-9d36-482b-99b1-354ccd8bcfbb',
+            file: 'TheLabxGrind-2026AllStarWeekend-0079.jpg',
+            width: 4752,
+            height: 3168,
+            alt: 'A group talking and laughing around a table',
+          },
+          {
+            category: 'gather',
+            subtitle: 'Private Events & Celebrations',
+            id: 'bbea1c4b-69bb-47d2-b106-129f42178675',
+            file: 'IMG_5581.jpg',
+            width: 5712,
+            height: 4284,
+            ratio: 2.1,
+            alt: 'Dining tables set up in the main hall',
+          },
+          {
+            category: 'gather',
+            subtitle: 'Outdoor Gatherings',
+            id: '474b0a4e-9072-450a-9fba-7e8f8f02f0b8',
+            file: 'IMG_6183.jpg',
+            width: 4032,
+            height: 3024,
+            ratio: 2.1,
+            pos: 'center 60%',
+            alt: 'The outdoor patio at night under string lights',
+          },
+        ];
+
+        const escape = (s) =>
+          String(s).replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+              })[c],
+          );
+
+        const srcFor = (t) => `${CDN}/${t.id}/${t.file}`;
+
+        const srcsetFor = (t) => {
+          const widths = WIDTHS.filter((w) => w <= t.width);
+          if (!widths.length) widths.push(WIDTHS[0]);
+          return widths.map((w) => `${srcFor(t)}?format=${w}w ${w}w`).join(', ');
+        };
+
+        // Filters
+        const filters = root.querySelector('.lab-spaces__filters');
+        const options = [{ key: 'all', label: 'All' }, ...CATEGORIES];
+        filters.innerHTML = options
+          .map(
+            (o) =>
+              `<button type="button" class="lab-spaces__filter" data-filter="${o.key}" aria-pressed="${o.key === 'all'}">${escape(o.label)}</button>`,
+          )
+          .join('');
+
+        // Rows
+        const grid = root.querySelector('.lab-spaces__grid');
+        grid.innerHTML = CATEGORIES.map((cat, rowIndex) => {
+          const tiles = TILES.filter((t) => t.category === cat.key);
+          if (!tiles.length) return '';
+
+          const ratios = tiles.map((t) => t.ratio || t.width / t.height);
+          const sum = ratios.reduce((a, b) => a + b, 0);
+
+          const items = tiles
+            .map((t, i) => {
+              // object-fit: cover renders the image wider than the tile when
+              // the tile is narrower than the photo, so request for that width
+              const natural = t.width / t.height;
+              const share = Math.ceil(
+                (ratios[i] / sum) * Math.max(1, natural / ratios[i]) * 100,
+              );
+              const mobileShare = Math.ceil(Math.max(1, natural / 1.5) * 100);
+              const style = [
+                `--ar:${ratios[i].toFixed(4)}`,
+                t.pos ? `--pos:${t.pos}` : '',
+              ]
+                .filter(Boolean)
+                .join(';');
+
+              return `
+                <figure class="lab-spaces__tile" style="${style}">
+                  <img
+                    src="${srcFor(t)}?format=1000w"
+                    srcset="${srcsetFor(t)}"
+                    sizes="(max-width: 639px) ${mobileShare}vw, ${share}vw"
+                    width="${t.width}"
+                    height="${t.height}"
+                    alt="${escape(t.alt)}"
+                    loading="${rowIndex === 0 ? 'eager' : 'lazy'}"
+                    decoding="async"
+                  />
+                  <figcaption class="lab-spaces__caption">
+                    <span class="lab-spaces__category">${escape(cat.label)}</span>
+                    <span class="lab-spaces__subtitle">${escape(t.subtitle)}</span>
+                  </figcaption>
+                </figure>`;
+            })
+            .join('');
+
+          return `
+            <div
+              class="lab-spaces__row"
+              data-category="${cat.key}"
+              style="--sum:${sum.toFixed(4)};--gaps:calc(var(--lab-gap) * ${tiles.length - 1})"
+            >${items}</div>`;
+        }).join('');
+
+        const buttons = [...filters.querySelectorAll('.lab-spaces__filter')];
+        const rows = [...grid.querySelectorAll('.lab-spaces__row')];
+
+        filters.addEventListener('click', (e) => {
+          const button = e.target.closest('.lab-spaces__filter');
+          if (!button) return;
+
+          const active = button.dataset.filter;
+          buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          rows.forEach((row) => {
+            row.hidden = active !== 'all' && row.dataset.category !== active;
+            // Restart the fade on rows that stay/become visible
+            row.style.animation = 'none';
+            void row.offsetWidth;
+            row.style.animation = '';
+          });
+        });
+      })();
+    </script>
+    <!-- LAB SPACES: end -->
+
+    <!-- DEMO ONLY: native Squarespace blocks -->
+    <section class="demo-cta">
+      <p class="demo-eyebrow">What could you do here?</p>
+      <h2 class="demo-headline">
+        From workshops and wellness classes to celebrations, conversations, and
+        everything in between.
+      </h2>
+      <p>The LAB was built to be used.</p>
+      <div class="demo-rule"></div>
+      <div class="demo-buttons">
+        <span>Explore Our Spaces</span>
+        <span>Host Something</span>
+      </div>
+    </section>
+  </body>
+</html>
