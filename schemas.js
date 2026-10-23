@@ -69,6 +69,7 @@ export function getLocalBusinessSchema(services = []) {
     areaServed: AREA_SERVED,
     sameAs: [
       'https://www.instagram.com/the.labinc',
+      'https://www.facebook.com/profile.php?id=100088698872015',
       'https://www.linkedin.com/company/the-lab-incubator/',
     ],
     knowsAbout: [
